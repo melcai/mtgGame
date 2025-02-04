@@ -65,7 +65,74 @@ gdjs.ConnectionCode.eventsList0 = function(runtimeScene) {
 }
 
 
-};gdjs.ConnectionCode.userFunc0x27fecc0 = function GDJSInlineCode(runtimeScene) {
+};gdjs.ConnectionCode.userFunc0x1a452f0 = function GDJSInlineCode(runtimeScene) {
+"use strict";
+// Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
+const arrayBufferToBase64 = (buffer) => {
+    return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+};
+
+// Funktion zum Konvertieren von Base64 zurück in ein ArrayBuffer
+const base64ToArrayBuffer = (base64) => {
+    const binaryString = atob(base64);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+};
+
+// Funktion zur Verschlüsselung
+const encrypt = async (text, key) => {
+    const encoder = new TextEncoder();
+    const iv = crypto.getRandomValues(new Uint8Array(12)); // 12-Byte-IV
+    const keyMaterial = await crypto.subtle.importKey("raw", key, { name: "AES-GCM" }, false, ["encrypt"]);
+    const encryptedData = await crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, keyMaterial, encoder.encode(text));
+
+    return {
+        iv: Array.from(iv),
+        data: Array.from(new Uint8Array(encryptedData))
+    };
+};
+
+// Funktion zur Entschlüsselung mit Fehlerbehandlung
+const decrypt = async (encryptedJSON, key) => {
+    try {
+        const decoder = new TextDecoder();
+        const encrypted = JSON.parse(encryptedJSON);
+        const iv = new Uint8Array(encrypted.iv);
+        const encryptedData = new Uint8Array(encrypted.data);
+        const keyMaterial = await crypto.subtle.importKey("raw", key, { name: "AES-GCM" }, false, ["decrypt"]);
+        const decryptedData = await crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, keyMaterial, encryptedData);
+        
+        return decoder.decode(decryptedData);
+    } catch (error) {
+        return null; // Falls der Schlüssel falsch ist, wird null zurückgegeben
+    }
+};
+
+// Schlüssel aus GDevelop-Variable holen (Base64 -> ArrayBuffer)
+const key = base64ToArrayBuffer("Q9eMRUwijIGo/mnMBURCM41tBXQE3x2nZzpPXOqgX6o=");
+
+// Verschlüsselten Text aus GDevelop-Variable holen
+const text = "{\"iv\":[232,64,191,116,254,221,78,204,23,26,236,235],\"data\":[250,192,253,168,215,104,202,225,235,192,8,129,178,42,20,224,213,37,148,226,77,149,88,214,7,1,102,183,223,105,114,175,60,76,43,72,224,104,164,70,124,157,250,103,66,206,190,36,46,10,170,81,5,183,137,100,30,156,190,205,188,107]}";
+
+// Entschlüsseln mit Fehlerprüfung
+decrypt(text, key).then(decryptedText => {
+    runtimeScene.getVariables().get("Token").setString(decryptedText);
+});
+};
+gdjs.ConnectionCode.eventsList1 = function(runtimeScene) {
+
+{
+
+
+gdjs.ConnectionCode.userFunc0x1a452f0(runtimeScene);
+
+}
+
+
+};gdjs.ConnectionCode.userFunc0x1a45e80 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion, um den Cache zu löschen
 const clearCache = async () => {
@@ -86,17 +153,17 @@ const clearCache = async () => {
 
 clearCache();
 };
-gdjs.ConnectionCode.eventsList1 = function(runtimeScene, asyncObjectsList) {
+gdjs.ConnectionCode.eventsList2 = function(runtimeScene, asyncObjectsList) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x27fecc0(runtimeScene);
+gdjs.ConnectionCode.userFunc0x1a45e80(runtimeScene);
 
 }
 
 
-};gdjs.ConnectionCode.eventsList2 = function(runtimeScene, asyncObjectsList) {
+};gdjs.ConnectionCode.eventsList3 = function(runtimeScene, asyncObjectsList) {
 
 {
 
@@ -108,7 +175,7 @@ isConditionTrue_0 = false;
 if (isConditionTrue_0) {
 
 { //Subevents
-gdjs.ConnectionCode.eventsList1(runtimeScene, asyncObjectsList);} //End of subevents
+gdjs.ConnectionCode.eventsList2(runtimeScene, asyncObjectsList);} //End of subevents
 }
 
 }
@@ -128,14 +195,15 @@ if (isConditionTrue_0) {
 }
 
 
-};gdjs.ConnectionCode.asyncCallback27938188 = function (runtimeScene, asyncObjectsList) {
+};gdjs.ConnectionCode.asyncCallback28222308 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
-
+{runtimeScene.getScene().getVariables().getFromIndex(10).setString("");
+}
 { //Subevents
-gdjs.ConnectionCode.eventsList2(runtimeScene, asyncObjectsList);} //End of subevents
+gdjs.ConnectionCode.eventsList3(runtimeScene, asyncObjectsList);} //End of subevents
 gdjs.ConnectionCode.localVariables.length = 0;
 }
-gdjs.ConnectionCode.eventsList3 = function(runtimeScene, asyncObjectsList) {
+gdjs.ConnectionCode.eventsList4 = function(runtimeScene, asyncObjectsList) {
 
 {
 
@@ -145,21 +213,21 @@ const parentAsyncObjectsList = asyncObjectsList;
 {
 const asyncObjectsList = gdjs.LongLivedObjectsList.from(parentAsyncObjectsList);
 asyncObjectsList.backupLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ReadResponseText.func(runtimeScene, runtimeScene.getScene().getVariables().getFromIndex(1), runtimeScene.getScene().getVariables().getFromIndex(2), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback27938188(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ReadResponseText.func(runtimeScene, runtimeScene.getScene().getVariables().getFromIndex(1), runtimeScene.getScene().getVariables().getFromIndex(2), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback28222308(runtimeScene, asyncObjectsList)));
 }
 }
 
 }
 
 
-};gdjs.ConnectionCode.asyncCallback26742972 = function (runtimeScene, asyncObjectsList) {
+};gdjs.ConnectionCode.asyncCallback28103012 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
 
 { //Subevents
-gdjs.ConnectionCode.eventsList3(runtimeScene, asyncObjectsList);} //End of subevents
+gdjs.ConnectionCode.eventsList4(runtimeScene, asyncObjectsList);} //End of subevents
 gdjs.ConnectionCode.localVariables.length = 0;
 }
-gdjs.ConnectionCode.eventsList4 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList5 = function(runtimeScene) {
 
 {
 
@@ -168,7 +236,7 @@ gdjs.ConnectionCode.eventsList4 = function(runtimeScene) {
 {
 const asyncObjectsList = new gdjs.LongLivedObjectsList();
 asyncObjectsList.backupLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ExecuteRequest.func(runtimeScene, "getTxt", runtimeScene.getScene().getVariables().getFromIndex(1), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback26742972(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ExecuteRequest.func(runtimeScene, "getTxt", runtimeScene.getScene().getVariables().getFromIndex(1), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback28103012(runtimeScene, asyncObjectsList)));
 }
 }
 
@@ -176,7 +244,7 @@ runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ExecuteR
 
 
 };gdjs.ConnectionCode.mapOfGDgdjs_9546ConnectionCode_9546GDEncryptObjects1Objects = Hashtable.newFrom({"Encrypt": gdjs.ConnectionCode.GDEncryptObjects1});
-gdjs.ConnectionCode.userFunc0x27fc420 = function GDJSInlineCode(runtimeScene) {
+gdjs.ConnectionCode.userFunc0x1a465b8 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
 const arrayBufferToBase64 = (buffer) => {
@@ -234,18 +302,18 @@ encrypt(text, key).then(encrypted => {
     runtimeScene.getVariables().get("Callback").setString("verschlüsselt");
 });
 };
-gdjs.ConnectionCode.eventsList5 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList6 = function(runtimeScene) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x27fc420(runtimeScene);
+gdjs.ConnectionCode.userFunc0x1a465b8(runtimeScene);
 
 }
 
 
 };gdjs.ConnectionCode.mapOfGDgdjs_9546ConnectionCode_9546GDEncryptCustomObjects1Objects = Hashtable.newFrom({"EncryptCustom": gdjs.ConnectionCode.GDEncryptCustomObjects1});
-gdjs.ConnectionCode.userFunc0x27fc728 = function GDJSInlineCode(runtimeScene) {
+gdjs.ConnectionCode.userFunc0x1a468f0 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
 const arrayBufferToBase64 = (buffer) => {
@@ -303,18 +371,18 @@ encrypt(text, key).then(encrypted => {
     runtimeScene.getVariables().get("Callback").setString("verschlüsselt");
 });
 };
-gdjs.ConnectionCode.eventsList6 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList7 = function(runtimeScene) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x27fc728(runtimeScene);
+gdjs.ConnectionCode.userFunc0x1a468f0(runtimeScene);
 
 }
 
 
 };gdjs.ConnectionCode.mapOfGDgdjs_9546ConnectionCode_9546GDDecryptObjects1Objects = Hashtable.newFrom({"Decrypt": gdjs.ConnectionCode.GDDecryptObjects1});
-gdjs.ConnectionCode.userFunc0x27fca48 = function GDJSInlineCode(runtimeScene) {
+gdjs.ConnectionCode.userFunc0x1a46bf0 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
 const arrayBufferToBase64 = (buffer) => {
@@ -378,17 +446,17 @@ decrypt(text, key).then(decryptedText => {
 });
 
 };
-gdjs.ConnectionCode.eventsList7 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList8 = function(runtimeScene) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x27fca48(runtimeScene);
+gdjs.ConnectionCode.userFunc0x1a46bf0(runtimeScene);
 
 }
 
 
-};gdjs.ConnectionCode.eventsList8 = function(runtimeScene) {
+};gdjs.ConnectionCode.eventsList9 = function(runtimeScene) {
 
 {
 
@@ -404,12 +472,33 @@ let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
 isConditionTrue_0 = gdjs.evtTools.runtimeScene.sceneJustBegins(runtimeScene);
 if (isConditionTrue_0) {
-{gdjs.evtsExt__AdvancedHTTP__CreateRequest.func(runtimeScene, "getTxt", "https://raw.githubusercontent.com/melcai/mtgGameFiles/main/Versions/VersionHistory", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
-}{gdjs.evtsExt__AdvancedHTTP__SetRequestHeader.func(runtimeScene, "token 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", "getTxt", "Authorization", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
+
+{ //Subevents
+gdjs.ConnectionCode.eventsList1(runtimeScene);} //End of subevents
+}
+
+}
+
+
+{
+
+
+let isConditionTrue_0 = false;
+isConditionTrue_0 = false;
+{isConditionTrue_0 = (runtimeScene.getScene().getVariables().getFromIndex(10).getAsString() != "");
+}
+if (isConditionTrue_0) {
+isConditionTrue_0 = false;
+{isConditionTrue_0 = (runtimeScene.getScene().getVariables().getFromIndex(10).getAsString() != "0");
+}
+}
+if (isConditionTrue_0) {
+{gdjs.evtsExt__AdvancedHTTP__CreateRequest.func(runtimeScene, "getTxt", "https://raw.githubusercontent.com/melcai/mtgGameFiles/refs/heads/main/Versions/VersionHistory", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
+}{gdjs.evtsExt__AdvancedHTTP__SetRequestHeader.func(runtimeScene, runtimeScene.getScene().getVariables().getFromIndex(10).getAsString(), "getTxt", "Authorization", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
 }{gdjs.evtsExt__AdvancedHTTP__SetRequestMethod.func(runtimeScene, "getTxt", "GET", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
 }
 { //Subevents
-gdjs.ConnectionCode.eventsList4(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList5(runtimeScene);} //End of subevents
 }
 
 }
@@ -443,7 +532,7 @@ isConditionTrue_0 = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Lef
 if (isConditionTrue_0) {
 
 { //Subevents
-gdjs.ConnectionCode.eventsList5(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList6(runtimeScene);} //End of subevents
 }
 
 }
@@ -463,7 +552,7 @@ isConditionTrue_0 = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Lef
 if (isConditionTrue_0) {
 
 { //Subevents
-gdjs.ConnectionCode.eventsList6(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList7(runtimeScene);} //End of subevents
 }
 
 }
@@ -483,7 +572,7 @@ isConditionTrue_0 = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Lef
 if (isConditionTrue_0) {
 
 { //Subevents
-gdjs.ConnectionCode.eventsList7(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList8(runtimeScene);} //End of subevents
 }
 
 }
@@ -593,7 +682,7 @@ gdjs.ConnectionCode.GDInformationObjects3.length = 0;
 gdjs.ConnectionCode.GDInformationObjects4.length = 0;
 gdjs.ConnectionCode.GDInformationObjects5.length = 0;
 
-gdjs.ConnectionCode.eventsList8(runtimeScene);
+gdjs.ConnectionCode.eventsList9(runtimeScene);
 gdjs.ConnectionCode.GDKeyInputObjects1.length = 0;
 gdjs.ConnectionCode.GDKeyInputObjects2.length = 0;
 gdjs.ConnectionCode.GDKeyInputObjects3.length = 0;
