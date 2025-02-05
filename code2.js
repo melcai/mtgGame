@@ -244,7 +244,7 @@ let isConditionTrue_0 = false;
 
 
 };gdjs.testsCode.mapOfGDgdjs_9546testsCode_9546GDVisibilityObjects1Objects = Hashtable.newFrom({"Visibility": gdjs.testsCode.GDVisibilityObjects1});
-gdjs.testsCode.asyncCallback28086668 = function (runtimeScene, asyncObjectsList) {
+gdjs.testsCode.asyncCallback33972628 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.testsCode.localVariables);
 gdjs.copyArray(runtimeScene.getObjects("CardTest"), gdjs.testsCode.GDCardTestObjects2);
 gdjs.copyArray(asyncObjectsList.getObjects("Visibility"), gdjs.testsCode.GDVisibilityObjects2);
@@ -267,7 +267,7 @@ gdjs.testsCode.eventsList3 = function(runtimeScene) {
 const asyncObjectsList = new gdjs.LongLivedObjectsList();
 asyncObjectsList.backupLocalVariablesContainers(gdjs.testsCode.localVariables);
 for (const obj of gdjs.testsCode.GDVisibilityObjects1) asyncObjectsList.addObject("Visibility", obj);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1), (runtimeScene) => (gdjs.testsCode.asyncCallback28086668(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1), (runtimeScene) => (gdjs.testsCode.asyncCallback33972628(runtimeScene, asyncObjectsList)));
 }
 }
 
@@ -275,7 +275,7 @@ runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1)
 
 
 };gdjs.testsCode.mapOfGDgdjs_9546testsCode_9546GDVisibilityObjects1Objects = Hashtable.newFrom({"Visibility": gdjs.testsCode.GDVisibilityObjects1});
-gdjs.testsCode.asyncCallback24970180 = function (runtimeScene, asyncObjectsList) {
+gdjs.testsCode.asyncCallback33975676 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.testsCode.localVariables);
 gdjs.copyArray(runtimeScene.getObjects("CardTest"), gdjs.testsCode.GDCardTestObjects2);
 gdjs.copyArray(asyncObjectsList.getObjects("Visibility"), gdjs.testsCode.GDVisibilityObjects2);
@@ -298,7 +298,7 @@ gdjs.testsCode.eventsList4 = function(runtimeScene) {
 const asyncObjectsList = new gdjs.LongLivedObjectsList();
 asyncObjectsList.backupLocalVariablesContainers(gdjs.testsCode.localVariables);
 for (const obj of gdjs.testsCode.GDVisibilityObjects1) asyncObjectsList.addObject("Visibility", obj);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1), (runtimeScene) => (gdjs.testsCode.asyncCallback24970180(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1), (runtimeScene) => (gdjs.testsCode.asyncCallback33975676(runtimeScene, asyncObjectsList)));
 }
 }
 
@@ -306,7 +306,7 @@ runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1)
 
 
 };gdjs.testsCode.mapOfGDgdjs_9546testsCode_9546GDUpdateObjects1Objects = Hashtable.newFrom({"Update": gdjs.testsCode.GDUpdateObjects1});
-gdjs.testsCode.asyncCallback25369892 = function (runtimeScene, asyncObjectsList) {
+gdjs.testsCode.asyncCallback33981668 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.testsCode.localVariables);
 gdjs.copyArray(runtimeScene.getObjects("CardTest"), gdjs.testsCode.GDCardTestObjects2);
 {for(var i = 0, len = gdjs.testsCode.GDCardTestObjects2.length ;i < len;++i) {
@@ -323,7 +323,7 @@ gdjs.testsCode.eventsList5 = function(runtimeScene) {
 {
 const asyncObjectsList = new gdjs.LongLivedObjectsList();
 asyncObjectsList.backupLocalVariablesContainers(gdjs.testsCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1), (runtimeScene) => (gdjs.testsCode.asyncCallback25369892(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(0.1), (runtimeScene) => (gdjs.testsCode.asyncCallback33981668(runtimeScene, asyncObjectsList)));
 }
 }
 

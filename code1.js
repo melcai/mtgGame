@@ -65,7 +65,7 @@ gdjs.ConnectionCode.eventsList0 = function(runtimeScene) {
 }
 
 
-};gdjs.ConnectionCode.userFunc0x1a452f0 = function GDJSInlineCode(runtimeScene) {
+};gdjs.ConnectionCode.userFunc0x15cbf80 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
 const arrayBufferToBase64 = (buffer) => {
@@ -111,14 +111,12 @@ const decrypt = async (encryptedJSON, key) => {
     }
 };
 
-// Schlüssel aus GDevelop-Variable holen (Base64 -> ArrayBuffer)
 const key = base64ToArrayBuffer("Q9eMRUwijIGo/mnMBURCM41tBXQE3x2nZzpPXOqgX6o=");
 
-// Verschlüsselten Text aus GDevelop-Variable holen
-const text = "{\"iv\":[232,64,191,116,254,221,78,204,23,26,236,235],\"data\":[250,192,253,168,215,104,202,225,235,192,8,129,178,42,20,224,213,37,148,226,77,149,88,214,7,1,102,183,223,105,114,175,60,76,43,72,224,104,164,70,124,157,250,103,66,206,190,36,46,10,170,81,5,183,137,100,30,156,190,205,188,107]}";
+const Text = "{\"iv\":[232,64,191,116,254,221,78,204,23,26,236,235],\"data\":[250,192,253,168,215,104,202,225,235,192,8,129,178,42,20,224,213,37,148,226,77,149,88,214,7,1,102,183,223,105,114,175,60,76,43,72,224,104,164,70,124,157,250,103,66,206,190,36,46,10,170,81,5,183,137,100,30,156,190,205,188,107]}";
 
 // Entschlüsseln mit Fehlerprüfung
-decrypt(text, key).then(decryptedText => {
+decrypt(Text, key).then(decryptedText => {
     runtimeScene.getVariables().get("Token").setString(decryptedText);
 });
 };
@@ -127,56 +125,16 @@ gdjs.ConnectionCode.eventsList1 = function(runtimeScene) {
 {
 
 
-gdjs.ConnectionCode.userFunc0x1a452f0(runtimeScene);
+gdjs.ConnectionCode.userFunc0x15cbf80(runtimeScene);
 
 }
 
 
-};gdjs.ConnectionCode.userFunc0x1a45e80 = function GDJSInlineCode(runtimeScene) {
-"use strict";
-// Funktion, um den Cache zu löschen
-const clearCache = async () => {
-    if ('caches' in window) {
-        // Hole alle Caches
-        const cacheNames = await caches.keys();
-        // Lösche jeden Cache
-        for (let cacheName of cacheNames) {
-            await caches.delete(cacheName);
-        }
-        console.log('Cache wurde gelöscht, aber IndexedDB bleibt unberührt');
-        location.reload();
-    } else {
-        console.log('Cache API wird von diesem Browser nicht unterstützt.');
-        location.href = location.href.split('?')[0] + '?nocache=' + new Date().getTime();
-    }
-};
-
-clearCache();
-};
-gdjs.ConnectionCode.eventsList2 = function(runtimeScene, asyncObjectsList) {
+};gdjs.ConnectionCode.eventsList2 = function(runtimeScene, asyncObjectsList) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x1a45e80(runtimeScene);
-
-}
-
-
-};gdjs.ConnectionCode.eventsList3 = function(runtimeScene, asyncObjectsList) {
-
-{
-
-
-let isConditionTrue_0 = false;
-isConditionTrue_0 = false;
-{isConditionTrue_0 = !((runtimeScene.getScene().getVariables().getFromIndex(2).getAsString()).startsWith("Newest: " + runtimeScene.getScene().getVariables().getFromIndex(3).getAsString()));
-}
-if (isConditionTrue_0) {
-
-{ //Subevents
-gdjs.ConnectionCode.eventsList2(runtimeScene, asyncObjectsList);} //End of subevents
-}
 
 }
 
@@ -195,15 +153,28 @@ if (isConditionTrue_0) {
 }
 
 
-};gdjs.ConnectionCode.asyncCallback28222308 = function (runtimeScene, asyncObjectsList) {
-asyncObjectsList.restoreLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
-{runtimeScene.getScene().getVariables().getFromIndex(10).setString("");
+{
+
+
+let isConditionTrue_0 = false;
+{
+gdjs.copyArray(runtimeScene.getObjects("Information"), gdjs.ConnectionCode.GDInformationObjects3);
+{for(var i = 0, len = gdjs.ConnectionCode.GDInformationObjects3.length ;i < len;++i) {
+    gdjs.ConnectionCode.GDInformationObjects3[i].getBehavior("Text").setText(runtimeScene.getScene().getVariables().getFromIndex(2).getAsString() + "\n" + runtimeScene.getScene().getVariables().getFromIndex(3).getAsString() + "\n" + runtimeScene.getScene().getVariables().getFromIndex(0).getAsString());
 }
+}}
+
+}
+
+
+};gdjs.ConnectionCode.asyncCallback33926796 = function (runtimeScene, asyncObjectsList) {
+asyncObjectsList.restoreLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
+
 { //Subevents
-gdjs.ConnectionCode.eventsList3(runtimeScene, asyncObjectsList);} //End of subevents
+gdjs.ConnectionCode.eventsList2(runtimeScene, asyncObjectsList);} //End of subevents
 gdjs.ConnectionCode.localVariables.length = 0;
 }
-gdjs.ConnectionCode.eventsList4 = function(runtimeScene, asyncObjectsList) {
+gdjs.ConnectionCode.eventsList3 = function(runtimeScene, asyncObjectsList) {
 
 {
 
@@ -213,21 +184,21 @@ const parentAsyncObjectsList = asyncObjectsList;
 {
 const asyncObjectsList = gdjs.LongLivedObjectsList.from(parentAsyncObjectsList);
 asyncObjectsList.backupLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ReadResponseText.func(runtimeScene, runtimeScene.getScene().getVariables().getFromIndex(1), runtimeScene.getScene().getVariables().getFromIndex(2), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback28222308(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ReadResponseText.func(runtimeScene, runtimeScene.getScene().getVariables().getFromIndex(1), runtimeScene.getScene().getVariables().getFromIndex(2), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback33926796(runtimeScene, asyncObjectsList)));
 }
 }
 
 }
 
 
-};gdjs.ConnectionCode.asyncCallback28103012 = function (runtimeScene, asyncObjectsList) {
+};gdjs.ConnectionCode.asyncCallback33926724 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
 
 { //Subevents
-gdjs.ConnectionCode.eventsList4(runtimeScene, asyncObjectsList);} //End of subevents
+gdjs.ConnectionCode.eventsList3(runtimeScene, asyncObjectsList);} //End of subevents
 gdjs.ConnectionCode.localVariables.length = 0;
 }
-gdjs.ConnectionCode.eventsList5 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList4 = function(runtimeScene) {
 
 {
 
@@ -236,7 +207,7 @@ gdjs.ConnectionCode.eventsList5 = function(runtimeScene) {
 {
 const asyncObjectsList = new gdjs.LongLivedObjectsList();
 asyncObjectsList.backupLocalVariablesContainers(gdjs.ConnectionCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ExecuteRequest.func(runtimeScene, "getTxt", runtimeScene.getScene().getVariables().getFromIndex(1), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback28103012(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ExecuteRequest.func(runtimeScene, "getTxt", runtimeScene.getScene().getVariables().getFromIndex(1), (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), (runtimeScene) => (gdjs.ConnectionCode.asyncCallback33926724(runtimeScene, asyncObjectsList)));
 }
 }
 
@@ -244,7 +215,7 @@ runtimeScene.getAsyncTasksManager().addTask(gdjs.evtsExt__AdvancedHTTP__ExecuteR
 
 
 };gdjs.ConnectionCode.mapOfGDgdjs_9546ConnectionCode_9546GDEncryptObjects1Objects = Hashtable.newFrom({"Encrypt": gdjs.ConnectionCode.GDEncryptObjects1});
-gdjs.ConnectionCode.userFunc0x1a465b8 = function GDJSInlineCode(runtimeScene) {
+gdjs.ConnectionCode.userFunc0x15cd520 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
 const arrayBufferToBase64 = (buffer) => {
@@ -302,18 +273,18 @@ encrypt(text, key).then(encrypted => {
     runtimeScene.getVariables().get("Callback").setString("verschlüsselt");
 });
 };
-gdjs.ConnectionCode.eventsList6 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList5 = function(runtimeScene) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x1a465b8(runtimeScene);
+gdjs.ConnectionCode.userFunc0x15cd520(runtimeScene);
 
 }
 
 
 };gdjs.ConnectionCode.mapOfGDgdjs_9546ConnectionCode_9546GDEncryptCustomObjects1Objects = Hashtable.newFrom({"EncryptCustom": gdjs.ConnectionCode.GDEncryptCustomObjects1});
-gdjs.ConnectionCode.userFunc0x1a468f0 = function GDJSInlineCode(runtimeScene) {
+gdjs.ConnectionCode.userFunc0x15cd858 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
 const arrayBufferToBase64 = (buffer) => {
@@ -371,18 +342,18 @@ encrypt(text, key).then(encrypted => {
     runtimeScene.getVariables().get("Callback").setString("verschlüsselt");
 });
 };
-gdjs.ConnectionCode.eventsList7 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList6 = function(runtimeScene) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x1a468f0(runtimeScene);
+gdjs.ConnectionCode.userFunc0x15cd858(runtimeScene);
 
 }
 
 
 };gdjs.ConnectionCode.mapOfGDgdjs_9546ConnectionCode_9546GDDecryptObjects1Objects = Hashtable.newFrom({"Decrypt": gdjs.ConnectionCode.GDDecryptObjects1});
-gdjs.ConnectionCode.userFunc0x1a46bf0 = function GDJSInlineCode(runtimeScene) {
+gdjs.ConnectionCode.userFunc0x15cdb58 = function GDJSInlineCode(runtimeScene) {
 "use strict";
 // Funktion zum Konvertieren eines ArrayBuffers in Base64 (zum Speichern als String)
 const arrayBufferToBase64 = (buffer) => {
@@ -446,17 +417,17 @@ decrypt(text, key).then(decryptedText => {
 });
 
 };
-gdjs.ConnectionCode.eventsList8 = function(runtimeScene) {
+gdjs.ConnectionCode.eventsList7 = function(runtimeScene) {
 
 {
 
 
-gdjs.ConnectionCode.userFunc0x1a46bf0(runtimeScene);
+gdjs.ConnectionCode.userFunc0x15cdb58(runtimeScene);
 
 }
 
 
-};gdjs.ConnectionCode.eventsList9 = function(runtimeScene) {
+};gdjs.ConnectionCode.eventsList8 = function(runtimeScene) {
 
 {
 
@@ -496,9 +467,10 @@ if (isConditionTrue_0) {
 {gdjs.evtsExt__AdvancedHTTP__CreateRequest.func(runtimeScene, "getTxt", "https://raw.githubusercontent.com/melcai/mtgGameFiles/refs/heads/main/Versions/VersionHistory", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
 }{gdjs.evtsExt__AdvancedHTTP__SetRequestHeader.func(runtimeScene, runtimeScene.getScene().getVariables().getFromIndex(10).getAsString(), "getTxt", "Authorization", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
 }{gdjs.evtsExt__AdvancedHTTP__SetRequestMethod.func(runtimeScene, "getTxt", "GET", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
+}{runtimeScene.getScene().getVariables().getFromIndex(10).setString("");
 }
 { //Subevents
-gdjs.ConnectionCode.eventsList5(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList4(runtimeScene);} //End of subevents
 }
 
 }
@@ -532,7 +504,7 @@ isConditionTrue_0 = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Lef
 if (isConditionTrue_0) {
 
 { //Subevents
-gdjs.ConnectionCode.eventsList6(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList5(runtimeScene);} //End of subevents
 }
 
 }
@@ -552,7 +524,7 @@ isConditionTrue_0 = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Lef
 if (isConditionTrue_0) {
 
 { //Subevents
-gdjs.ConnectionCode.eventsList7(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList6(runtimeScene);} //End of subevents
 }
 
 }
@@ -572,7 +544,7 @@ isConditionTrue_0 = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Lef
 if (isConditionTrue_0) {
 
 { //Subevents
-gdjs.ConnectionCode.eventsList8(runtimeScene);} //End of subevents
+gdjs.ConnectionCode.eventsList7(runtimeScene);} //End of subevents
 }
 
 }
@@ -682,7 +654,7 @@ gdjs.ConnectionCode.GDInformationObjects3.length = 0;
 gdjs.ConnectionCode.GDInformationObjects4.length = 0;
 gdjs.ConnectionCode.GDInformationObjects5.length = 0;
 
-gdjs.ConnectionCode.eventsList9(runtimeScene);
+gdjs.ConnectionCode.eventsList8(runtimeScene);
 gdjs.ConnectionCode.GDKeyInputObjects1.length = 0;
 gdjs.ConnectionCode.GDKeyInputObjects2.length = 0;
 gdjs.ConnectionCode.GDKeyInputObjects3.length = 0;
