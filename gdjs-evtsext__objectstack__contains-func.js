@@ -10,7 +10,7 @@ gdjs.evtsExt__ObjectStack__Contains.GDObjectObjects1= [];
 gdjs.evtsExt__ObjectStack__Contains.GDElementObjects1= [];
 
 
-gdjs.evtsExt__ObjectStack__Contains.userFunc0x17f42b8 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__ObjectStack__Contains.userFunc0x1759618 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const stackBehaviorName = eventsFunctionContext.getBehaviorName("Behavior");
 /** @type {Hashtable<gdjs.RuntimeObject[]>} */
@@ -36,7 +36,7 @@ gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__ObjectS
 
 var objects = [];
 objects.push.apply(objects,gdjs.evtsExt__ObjectStack__Contains.GDObjectObjects1);
-gdjs.evtsExt__ObjectStack__Contains.userFunc0x17f42b8(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__ObjectStack__Contains.userFunc0x1759618(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 

@@ -10,7 +10,7 @@ gdjs.evtsExt__ObjectPickingTools__PickHighestZAction.GDObjectObjects1= [];
 gdjs.evtsExt__ObjectPickingTools__PickHighestZAction.GDObjectObjects2= [];
 
 
-gdjs.evtsExt__ObjectPickingTools__PickHighestZAction.userFunc0x1410140 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__ObjectPickingTools__PickHighestZAction.userFunc0x14af498 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
 "use strict";
 // Create an empty array to hold the objects with the highest value
 let highestValueObjects = [];
@@ -50,7 +50,7 @@ gdjs.evtsExt__ObjectPickingTools__PickHighestZAction.eventsList0 = function(runt
 {
 
 
-gdjs.evtsExt__ObjectPickingTools__PickHighestZAction.userFunc0x1410140(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__ObjectPickingTools__PickHighestZAction.userFunc0x14af498(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 

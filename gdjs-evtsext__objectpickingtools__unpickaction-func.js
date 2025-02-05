@@ -9,7 +9,7 @@ gdjs.evtsExt__ObjectPickingTools__UnpickAction = {};
 gdjs.evtsExt__ObjectPickingTools__UnpickAction.GDobjectObjects1= [];
 
 
-gdjs.evtsExt__ObjectPickingTools__UnpickAction.userFunc0x27d1ca8 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__ObjectPickingTools__UnpickAction.userFunc0x14af498 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
 "use strict";
 const lists = eventsFunctionContext.getObjectsLists("object").items;
 for (const listName in lists)
@@ -21,7 +21,7 @@ gdjs.evtsExt__ObjectPickingTools__UnpickAction.eventsList0 = function(runtimeSce
 {
 
 
-gdjs.evtsExt__ObjectPickingTools__UnpickAction.userFunc0x27d1ca8(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__ObjectPickingTools__UnpickAction.userFunc0x14af498(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 
