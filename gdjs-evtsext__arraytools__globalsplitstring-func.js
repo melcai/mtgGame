@@ -8,7 +8,7 @@ if (typeof gdjs.evtsExt__ArrayTools__GlobalSplitString !== "undefined") {
 gdjs.evtsExt__ArrayTools__GlobalSplitString = {};
 
 
-gdjs.evtsExt__ArrayTools__GlobalSplitString.userFunc0x1502050 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__ArrayTools__GlobalSplitString.userFunc0x1532820 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
 "use strict";
 /** @type {gdjs.Variable} */
 const array = eventsFunctionContext.getArgument("Array");
@@ -28,7 +28,7 @@ gdjs.evtsExt__ArrayTools__GlobalSplitString.eventsList0 = function(runtimeScene,
 {
 
 
-gdjs.evtsExt__ArrayTools__GlobalSplitString.userFunc0x1502050(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__ArrayTools__GlobalSplitString.userFunc0x1532820(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 
